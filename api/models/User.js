@@ -17,6 +17,11 @@ const usersSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  knowcoco: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   register: {
     type: Date,
     default: Date.now(),
