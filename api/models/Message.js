@@ -5,6 +5,11 @@ const MessageSchema = mongoose.Schema({
         required: true,
         trim: true,
     },
+    senderIg: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     senderEmail: {
         type: String,
         required: true,
