@@ -46,7 +46,7 @@ exports.login = async (req, res) => {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ msg: errors.array() });
+            return res.status(400).json(errors.array());
         }
         // desesctructuramos las prop, esto es lo que se le pedira al usuario cuando se logee 
         const { email, password } = req.body;
@@ -54,12 +54,12 @@ exports.login = async (req, res) => {
         // vemos las validaciones, busca si ya existe algno registrado con el metodo findOne en el user
         const user = await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ msg: 'usuario no existe' });
+            return res.status(400).json('usuario no existe');
         }
         // codigo para revisar password y encriptarla 
         const passCorrect = await bcryptjs.compare(password, user.password);
         if (!passCorrect) {
-            return res.status(400).json({ msg: 'Password incorrecto' });
+            return res.status(400).json('Password incorrecto');
         }
 
         // Si todo es correcto en las validaciones Crear y firmar JWT (el token - alfanumerico de datos) - codigo para realizarlo
@@ -84,7 +84,7 @@ exports.login = async (req, res) => {
         );
 
     } catch (error) {
-        res.status(400).send('la puta madre');
+        res.status(400).send('error de conexion');
     }
 };
 
@@ -97,7 +97,7 @@ exports.getUserAuthentic = async (req, res) => {
     // Revisar Token
     if (!token) {
         // esto es para cuando el usuario no esta logeado
-        return res.status(401).json({ msg: 'No hay Token, permiso no valido' });
+        return res.status(401).json('No hay Token, permiso no valido');
     }
     // Validar Token
     try {
@@ -106,7 +106,7 @@ exports.getUserAuthentic = async (req, res) => {
         const user = await User.findById(cifrado.user.id).select('name role email');
         res.send(user);
     } catch (error) {
-        res.status(401).json({ msg: 'Token no valido' });
+        res.status(401).json('Token no valido');
     }
 };
 

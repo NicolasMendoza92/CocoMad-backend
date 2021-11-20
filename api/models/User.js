@@ -5,6 +5,11 @@ const usersSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   email: {
     type: String,
     required: true,
@@ -21,6 +26,7 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
+    enum: ['si', 'no', 'ire'],
   },
   register: {
     type: Date,
