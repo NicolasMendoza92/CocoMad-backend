@@ -21,7 +21,7 @@ const ProductSchema = mongoose.Schema({
         trim: true,
     },
     price: {
-        type: Date,
+        type: String,
         required: true,
     },
 });
