@@ -36,7 +36,7 @@ exports.getMessages = async (req, res) => {
 };
 exports.getMessage = async (req, res) => {
     try {
-        const message = await Message.findById(req.params.id).select('senderName senderEmail message');
+        const message = await Message.findById(req.params.id).select('senderName senderEmail senderIg message');
         res.send(message);
     } catch (error) {
         res.status(400).send('Hubo un error en la conexion a la base de datos');

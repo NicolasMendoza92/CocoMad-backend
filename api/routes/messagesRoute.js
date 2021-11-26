@@ -10,7 +10,7 @@ router.post(
     '/',
     [
         check('senderName', 'El nombre es obligatorio').not().isEmpty().isLength({ max: 30 }),
-        check('senderEmail', 'Agrega un Email Valido').isEmail().isLength({ max: 20 }),
+        check('senderEmail', 'Agrega un Email Valido').isEmail().isLength({ max: 35 }),
         check('message', 'El messege debe tener como mínimo de 15 caracteres').isLength({ min: 15 }),
         check('message', 'El messege debe tener como maximo de 250 caracteres').isLength({ max: 250 }),
     ],
