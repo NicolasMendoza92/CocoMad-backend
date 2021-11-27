@@ -39,10 +39,13 @@ exports.modifyProduct = async (req, res) => {
     const product = await Product.findById(req.params.id);
     // validamos si se envia un dato que no es acorde, no lo modifique 
     if (req.body.hasOwnProperty('name')) {
-      product.name = req.body.title;
+      product.name = req.body.name;
     }
     if (req.body.hasOwnProperty('image')) {
       product.image = req.body.image;
+    }
+    if (req.body.hasOwnProperty('imageDetail')) {
+      product.imageDetail = req.body.imageDetail;
     }
     if (req.body.hasOwnProperty('price')) {
       product.price = req.body.price;
@@ -51,7 +54,7 @@ exports.modifyProduct = async (req, res) => {
       product.price = req.body.category;
     }
     await product.save();
-    res.send(meme)
+    res.send(product)
   } catch (error) {
     console.log(error);
     res.status(400).send("Hubo un error");

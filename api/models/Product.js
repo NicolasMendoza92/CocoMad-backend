@@ -15,6 +15,11 @@ const ProductSchema = mongoose.Schema({
         required: true,
         trim: true,
     },
+    imageDetail: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     category: {
         type: String,
         required: true,
