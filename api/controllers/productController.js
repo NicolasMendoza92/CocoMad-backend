@@ -44,15 +44,18 @@ exports.modifyProduct = async (req, res) => {
     if (req.body.hasOwnProperty('image')) {
       product.image = req.body.image;
     }
+    if (req.body.hasOwnProperty('description')) {
+      product.description = req.body.description;
+  }
     if (req.body.hasOwnProperty('imageDetail')) {
       product.imageDetail = req.body.imageDetail;
-    }
-    if (req.body.hasOwnProperty('price')) {
-      product.price = req.body.price;
     }
     if (req.body.hasOwnProperty('category')) {
       product.price = req.body.category;
     }
+    if (req.body.hasOwnProperty('price')) {
+      product.price = req.body.price;
+    } 
     await product.save();
     res.send(product)
   } catch (error) {
