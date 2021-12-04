@@ -9,6 +9,7 @@ const usersRoute = require('./routes/usersRoute')
 const productsRoutes = require('./routes/productsRoute');
 const authRoutes = require('./routes/authRoute');
 const messagesRoutes = require('./routes/messagesRoute');
+const profileRoutes = require('./routes/profileRoute');
 const salesRoutes = require('./routes/salesRoute');
 
 
@@ -34,6 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/users', usersRoute)
 app.use('/api/products', productsRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes);
 app.use('/api/messages', messagesRoutes);
 app.use('/api/sales', salesRoutes);
 

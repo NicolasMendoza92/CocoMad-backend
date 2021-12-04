@@ -18,6 +18,12 @@ router.post('/',
 
 // defino las rutas que voy a usar y las llamo de userController
 
+router.put(
+    '/image',
+    [check('image', 'La imagen es obligatoria').not().isEmpty()],
+    userController.refreshImage
+);
+
 router.get('/', userController.getUsers);
 router.get('/:id', userController.getUser);
 router.put('/:id', userController.modifyUser);

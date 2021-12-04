@@ -49,7 +49,7 @@ exports.getUsers = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).select('name email');
+    const user = await User.findById(req.params.id).select('name email role knowcoco lastName register');
     res.send(user);
   } catch (error) {
     res.status(400).send('Hubo un error en la conexion a la base de datos');
@@ -81,5 +81,19 @@ exports.deleteUser = async (req, res) => {
     res.send('usuario eliminado');
   } catch (error) {
     res.status(400).send('Hubo un error en la conexion a la base de datos');
+  }
+};
+
+exports.refreshImage = async (req, res) => {
+  const token = req.header('x-auth-token');
+  if (!token) {
+    return res.status(401).json(' No hay Token, permiso no valido');
+  }
+  try {
+    const cifrado = jwt.verify(token, process.env.SECRETA);
+    const user = await User.findByIdAndUpdate(cifrado.user.id, { image: req.body.image });
+    res.send(user);
+  } catch (error) {
+    res.status(401).json('Token no valido');
   }
 };
