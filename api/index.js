@@ -12,14 +12,12 @@ const messagesRoutes = require('./routes/messagesRoute');
 const profileRoutes = require('./routes/profileRoute');
 const salesRoutes = require('./routes/salesRoute');
 
-
 // Importante el orden de las funciones!!!
 
 // crear el servidor
 const app = express();
 // permitir acceso al serividor, para poder usarlo como una API y llamarlo de otra app react mia
 app.use(cors());
-
 app.use(morgan('dev'));
 
 // Conectar a mongodb

@@ -51,7 +51,7 @@ exports.modifyProduct = async (req, res) => {
       product.imageDetail = req.body.imageDetail;
     }
     if (req.body.hasOwnProperty('category')) {
-      product.price = req.body.category;
+      product.category = req.body.category;
     }
     if (req.body.hasOwnProperty('price')) {
       product.price = req.body.price;

@@ -4,6 +4,7 @@ const ProductSchema = mongoose.Schema({
         type: String,
         required: true,
         trim: true,
+        unique: true,
     },
     description: {
         type: String,
@@ -26,7 +27,7 @@ const ProductSchema = mongoose.Schema({
         trim: true, 
     },
     price: {
-        type: String,
+        type: Number,
         required: true,
     },
 });
