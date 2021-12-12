@@ -50,6 +50,11 @@ const salesSchema = mongoose.Schema({
             required: true,
             trim: true,
         },
+        deliveryDate: {
+            type: Date,
+            required: true,
+            trim: true,
+        },
         buyerShippingIntructions: {
             type: String,
             trim: true,

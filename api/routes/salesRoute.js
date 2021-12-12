@@ -15,6 +15,7 @@ router.post(
         check('buyerShipping.buyerCity', 'Ciudad Obligatoria').not().isEmpty(),
         check('buyerShipping.buyerState', 'Estado Obligatorio').not().isEmpty(),
         check('buyerShipping.buyerZip', 'Zip Code obligatorio').not().isEmpty(),
+        check('buyerShipping.deliveryDate', '48hs de anticipacion').not().isEmpty(),
         check('buyerCard.buyerCardNumber', 'Numero obligatorio').not().isEmpty(),
         check('buyerCard.buyerCardName', 'Nombre obligatorio').not().isEmpty().isLength({ max: 40 }),
         check('buyerCard.buyerCardDate', 'Fecha obligatoria').not().isEmpty(),
