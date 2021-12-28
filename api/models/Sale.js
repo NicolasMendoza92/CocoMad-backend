@@ -26,6 +26,11 @@ const salesSchema = mongoose.Schema({
         },
     },
     buyerShipping: {
+        pickUp:{
+            type: String,
+            required: true,
+            trim: true,
+        },
         buyerAddress1: {
             type: String,
             required: true,
@@ -61,6 +66,11 @@ const salesSchema = mongoose.Schema({
         },
     },
     buyerCard: {
+        payMethod:{
+            type: String,
+            required: true,
+            trim: true,
+        },
         buyerCardNumber: {
             type: String,
             required: true,
