@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const salesSchema = mongoose.Schema({
+const deliverySchema = mongoose.Schema({
     buyerData: {
         buyerEmail: {
             type: String,
@@ -42,9 +42,39 @@ const salesSchema = mongoose.Schema({
             trim: true,
         },
     },
+    buyerShipping: {
+        buyerAddress1: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        buyerAddress2: {
+            type: String,
+            trim: true,
+        },
+        buyerCity: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        buyerState: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        buyerZip: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        buyerShippingIntructions: {
+            type: String,
+            trim: true,
+        },
+    },
     productsList: {
         type: Array,
     },
 });
 
-module.exports = mongoose.model('Sale', salesSchema);
+module.exports = mongoose.model('Delivery', deliverySchema);

@@ -50,7 +50,7 @@ exports.getSales = async (req, res) => {
 };
 exports.getSale = async (req, res) => {
     try {
-        const sales = await Sale.findById(req.params.id).select('buyerData buyerShipping productsList buyerCard');
+        const sales = await Sale.findById(req.params.id).select('buyerData productsList buyerConditions');
         res.send(sales);
     } catch (error) {
         res.status(400).send('Hubo un error en la conexion a la base de datos');
