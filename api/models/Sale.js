@@ -16,6 +16,11 @@ const salesSchema = mongoose.Schema({
             required: true,
             trim: true,
         },
+        buyerCelphone: {
+            type: String,
+            required: true,
+            trim: true,
+        },
         buyerId: {
             type: mongoose.Types.ObjectId,
             ref: 'User',
@@ -32,7 +37,12 @@ const salesSchema = mongoose.Schema({
             trim: true,
         },
         deliveryDate: {
-            type: Date,
+            type: String,
+            required: true,
+            trim: true,
+        },
+        deliveryHour: {
+            type: String,
             required: true,
             trim: true,
         },

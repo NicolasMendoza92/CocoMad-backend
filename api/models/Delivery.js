@@ -16,6 +16,11 @@ const deliverySchema = mongoose.Schema({
             required: true,
             trim: true,
         },
+        buyerCelphone: {
+            type: String,
+            required: true,
+            trim: true,
+        },
         buyerId: {
             type: mongoose.Types.ObjectId,
             ref: 'User',
@@ -33,6 +38,11 @@ const deliverySchema = mongoose.Schema({
         },
         deliveryDate: {
             type: Date,
+            required: true,
+            trim: true,
+        },
+        deliveryHour: {
+            type: String,
             required: true,
             trim: true,
         },

@@ -40,10 +40,10 @@ exports.createDelivery = async (req, res) => {
     }
 };
 
-exports.getDeliverys = async (req, res) => {
+exports.getDeliveries = async (req, res) => {
     try {
-        const deliverys = await Delivery.find();
-        res.send(deliverys);
+        const deliveries = await Delivery.find();
+        res.send(deliveries);
     } catch (error) {
         res.status(400).send('Hubo un error en la conexion a la base de datos');
     }
@@ -51,8 +51,8 @@ exports.getDeliverys = async (req, res) => {
 
 exports.getDelivery = async (req, res) => {
     try {
-        const deliverys = await Delivery.findById(req.params.id).select('buyerData productsList buyerConditions buyerShipping');
-        res.send(deliverys);
+        const deliveries = await Delivery.findById(req.params.id).select('buyerData productsList buyerConditions buyerShipping');
+        res.send(deliveries);
     } catch (error) {
         res.status(400).send('Hubo un error en la conexion a la base de datos');
     }

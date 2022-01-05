@@ -11,7 +11,7 @@ const authRoutes = require('./routes/authRoute');
 const messagesRoutes = require('./routes/messagesRoute');
 const profileRoutes = require('./routes/profileRoute');
 const salesRoutes = require('./routes/salesRoute');
-const deliverysRoutes = require('./routes/deliverysRoute');
+const deliveriesRoutes = require('./routes/deliveriesRoute');
 
 // Importante el orden de las funciones!!!
 
@@ -37,7 +37,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/messages', messagesRoutes);
 app.use('/api/sales', salesRoutes);
-app.use('/api/deliverys', deliverysRoutes);
+app.use('/api/deliveries', deliveriesRoutes);
 
 // puerto y arranque del servidor
 app.listen(process.env.PORT || 4000, () => {

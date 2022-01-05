@@ -16,7 +16,7 @@ router.post(
     ],
     deliveryController.createDelivery);
     
-router.get('/', deliveryController.getDeliverys);
+router.get('/', deliveryController.getDeliveries);
 router.get('/:id', deliveryController.getDelivery);
 router.delete('/:id', deliveryController.deleteDelivery);
 
