@@ -12,6 +12,7 @@ const messagesRoutes = require('./routes/messagesRoute');
 const profileRoutes = require('./routes/profileRoute');
 const salesRoutes = require('./routes/salesRoute');
 const deliveriesRoutes = require('./routes/deliveriesRoute');
+const emailsRoutes = require('./routes/emailsRoute');
 
 // Importante el orden de las funciones!!!
 
@@ -38,6 +39,7 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/messages', messagesRoutes);
 app.use('/api/sales', salesRoutes);
 app.use('/api/deliveries', deliveriesRoutes);
+app.use('/api/emails', emailsRoutes);
 
 // puerto y arranque del servidor
 app.listen(process.env.PORT || 4000, () => {
