@@ -41,38 +41,48 @@ exports.createEmail = async (req, res) => {
     transporter.verify().then(() => {
       console.log('listo para enviar')
     })
-console.log(sales)
+    console.log(sales)
     const response = await transporter.sendMail({
       from: '"CocoMad Bakery" <nicomendoza.92@gmail.com>', // sender address
       to: buyerEmail, // list of receivers
       subject: `Confirmación de Compra `,
       html: `
-      <h4> Hola ${buyerName}! Gracias por tu compra <h4>
-      <p> Puedes presentar este correo como prueba <p>
-     <ul>
+      <h4> Hola ${buyerName}! Gracias por tu compra </h4>
+      <p> Puedes presentar este correo como prueba </p>
+     <ul >
          <li> Dia de Retiro/Envio : ${deliveryDate} </li>
-         <li> Hora de Retiro/Envio : ${deliveryHour} </li>
-         <li> Recoge de tienda? : ${pickUp} </li>
-        <li> Metodo de Pago : ${payMethod} </li>
+         <li> Rango Horario: ${deliveryHour} </li>
+         <li> ¿Recoge de Tienda? : ${pickUp} </li>
+         <li> Metodo de Pago : ${payMethod} </li>
      </ul>
-     <b> Tu pedido es: <b>
-     ${sales.map(product => `
-     <ul>
-     <img style="width:300px;" src=" ${product.producto.image}"/>
-         <li> ${product.producto.category} </li>
-         <li> ${product.producto.name} </li>
-         <li> Cantidad:  ${product.quantity} </li>
-         <li> Pagas:  ${product.producto.price} </li>
-         
-     </ul>
-     `)} 
-     `
-    });
+     <b> Tu pedido es: </b>
+    <table>
+     <thead>
+     <tr className="text-center " >
+         <th>Imagen</th>
+         <th>Producto</th>
+         <th>Precio</th>
+         <th>Cantidad</th>
+         <th>Pagas</th>
+     </tr>
+     </thead>
+     <tbody>
+        ${sales.map(product => `
+        <tr className="text-center " >
+         <td><img style="width:80px;" src=" ${product.producto.image}"/></td>
+         <td> ${product.producto.name} </td>
+         <td> ${product.producto.price} </td>
+         <td>${product.quantity} un </td>
+         <td> ${(product.producto.price * product.quantity).toFixed(2)} € </td>
+        </tr>`)} 
+      </tbody>
+    </table>
+    `});
 
     console.log(response)
 
-      //Email de exito
-  res.json({ msg: 'Email enviado  Correctamente' });
+    //Email de exito
+    res.json({ msg: 'Email enviado  Correctamente' });
   }
   catch (error) {
     console.log(error);
