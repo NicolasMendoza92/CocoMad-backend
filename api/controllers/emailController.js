@@ -20,6 +20,7 @@ exports.createEmail = async (req, res) => {
     sales.push({ producto, quantity: item.quantity });
   }
 
+  let total = sales.reduce((total, { producto, quantity }) => total + producto.price * quantity, 0);
 
   //nueva venta
   const email = new Email(req.body);
@@ -47,36 +48,43 @@ exports.createEmail = async (req, res) => {
       to: buyerEmail, // list of receivers
       subject: `Confirmación de Compra `,
       html: `
-      <h4> Hola ${buyerName}! Gracias por tu compra </h4>
-      <p> Puedes presentar este correo como prueba </p>
-     <ul >
+    <div class="d-flex justify-content-start">
+       <h4> Hola ${buyerName}! Muchas Gracias por tu compra! </h4>
+      <ul >
          <li> Dia de Retiro/Envio : ${deliveryDate} </li>
          <li> Rango Horario: ${deliveryHour} </li>
          <li> ¿Recoge de Tienda? : ${pickUp} </li>
          <li> Metodo de Pago : ${payMethod} </li>
-     </ul>
-     <b> Tu pedido es: </b>
-    <table>
+         <li> Pagas: ${total} EUR </li>
+      </ul>
+      <hr style="width:30%;text-align:left;margin-left:0" >
+     <b> Detalle del Pedido: </b>
+     <table class="table">
      <thead>
-     <tr className="text-center " >
+      <tr class="text-center" >
          <th>Imagen</th>
          <th>Producto</th>
          <th>Precio</th>
          <th>Cantidad</th>
-         <th>Pagas</th>
-     </tr>
+         <th>Sub Total</th>
+      </tr>
      </thead>
      <tbody>
         ${sales.map(product => `
-        <tr className="text-center " >
+        <tr class="text-center " >
          <td><img style="width:80px;" src=" ${product.producto.image}"/></td>
          <td> ${product.producto.name} </td>
-         <td> ${product.producto.price} </td>
+         <td> ${product.producto.price} € </td>
          <td>${product.quantity} un </td>
          <td> ${(product.producto.price * product.quantity).toFixed(2)} € </td>
-        </tr>`)} 
-      </tbody>
-    </table>
+        </tr>
+        `)} 
+     </tbody>
+     </table>
+     <hr style="width:30%;text-align:left;margin-left:0" >
+     <p> Gracias por comprar en CocoMad Bakery </p>
+     <p> Puedes presentar este correo como prueba </p>
+    </div>
     `});
 
     console.log(response)
