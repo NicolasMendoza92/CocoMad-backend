@@ -51,6 +51,10 @@ const deliverySchema = mongoose.Schema({
             required: true,
             trim: true,
         },
+        discount:{
+            type:Number, 
+            trim:true,
+        }
     },
     buyerShipping: {
         buyerAddress1: {
@@ -76,6 +80,10 @@ const deliverySchema = mongoose.Schema({
             type: String,
             required: true,
             trim: true,
+        },
+        sendPrice:{
+            type:Number,
+            trim:true,
         },
         buyerShippingIntructions: {
             type: String,

@@ -45,7 +45,14 @@ const emailsSchema = mongoose.Schema({
         required: true,
         trim: true,
     },
-
+    sendPrice:{
+        type: Number,
+        trim: true,
+    },
+    discount:{
+        type:Number, 
+        trim:true,
+    },
     productsList: {
         type: Array,
     },

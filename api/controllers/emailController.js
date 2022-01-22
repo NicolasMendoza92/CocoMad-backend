@@ -4,7 +4,7 @@ const Product = require('../models/Product');
 
 exports.createEmail = async (req, res) => {
 
-  const { buyerEmail, buyerName, pickUp, deliveryDate, payMethod, deliveryHour, productsList } = req.body
+  const { buyerEmail, buyerName, pickUp, deliveryDate, payMethod, deliveryHour, productsList, sendPrice, discount } = req.body
 
 
   //Me trae los datos del producto con el post.
@@ -20,7 +20,8 @@ exports.createEmail = async (req, res) => {
     sales.push({ producto, quantity: item.quantity });
   }
 
-  let total = sales.reduce((total, { producto, quantity }) => total + producto.price * quantity, 0);
+  let subTotal = sales.reduce((total, { producto, quantity }) => total + producto.price * quantity, 0);
+  let total = sendPrice + subTotal - discount
 
   //nueva venta
   const email = new Email(req.body);
@@ -36,7 +37,7 @@ exports.createEmail = async (req, res) => {
       secure: true, // true for 465, false for other ports
       auth: {
         user: 'nicomendoza.92@gmail.com', // generated gmail user
-        pass: 'kqdiflvuejlomews', // generated gmail password (auth 2 pasos)
+        pass:  process.env.PASS_GMAIL, // generated gmail password (auth 2 pasos)
       },
     });
     transporter.verify().then(() => {
@@ -54,8 +55,10 @@ exports.createEmail = async (req, res) => {
          <li> Dia de Retiro/Envio : ${deliveryDate} </li>
          <li> Rango Horario: ${deliveryHour} </li>
          <li> ¿Recoge de Tienda? : ${pickUp} </li>
-         <li> Metodo de Pago : ${payMethod} </li>
+         <li> Envio: ${sendPrice} EUR </li>
+         <li> Descuento: ${discount} EUR </li>
          <li> Pagas: ${total} EUR </li>
+         <li> Metodo de Pago : ${payMethod} </li>
       </ul>
       <hr style="width:30%;text-align:left;margin-left:0" >
      <b> Detalle del Pedido: </b>

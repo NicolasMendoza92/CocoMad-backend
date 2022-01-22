@@ -51,6 +51,10 @@ const salesSchema = mongoose.Schema({
             required: true,
             trim: true,
         },
+        discount:{
+            type:Number, 
+            trim:true,
+        }
     },
     productsList: {
         type: Array,
