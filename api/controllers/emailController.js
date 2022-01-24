@@ -33,7 +33,7 @@ exports.createEmail = async (req, res) => {
 
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 465,
+      port: process.env.PASS_PORT,
       secure: true, // true for 465, false for other ports
       auth: {
         user: 'nicomendoza.92@gmail.com', // generated gmail user
