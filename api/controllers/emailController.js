@@ -32,11 +32,11 @@ exports.createEmail = async (req, res) => {
   try {
 
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
+      host: "",
       port: process.env.PASS_PORT,
       secure: true, // true for 465, false for other ports
       auth: {
-        user: 'nicomendoza.92@gmail.com', // generated gmail user
+        user: '', // generated gmail user
         pass:  process.env.PASS_GMAIL, // generated gmail password (auth 2 pasos)
       },
     });
