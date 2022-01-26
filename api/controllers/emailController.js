@@ -32,11 +32,11 @@ exports.createEmail = async (req, res) => {
   try {
 
     const transporter = nodemailer.createTransport({
-      host: "",
+      host: process.env.PASS_HOST,
       port: process.env.PASS_PORT,
       secure: true, // true for 465, false for other ports
       auth: {
-        user: '', // generated gmail user
+        user: process.env.PASS_USER, // generated gmail user
         pass:  process.env.PASS_GMAIL, // generated gmail password (auth 2 pasos)
       },
     });
@@ -55,6 +55,7 @@ exports.createEmail = async (req, res) => {
          <li> Dia de Retiro/Envio : ${deliveryDate} </li>
          <li> Rango Horario: ${deliveryHour} </li>
          <li> ¿Recoge de Tienda? : ${pickUp} </li>
+         <li> SubTotal : ${subTotal} </li>
          <li> Envio: ${sendPrice} EUR </li>
          <li> Descuento: ${discount} EUR </li>
          <li> Pagas: ${total} EUR </li>
