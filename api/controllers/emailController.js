@@ -45,7 +45,7 @@ exports.createEmail = async (req, res) => {
     })
     console.log(sales)
     const response = await transporter.sendMail({
-      from: '"CocoMad Bakery" <nicomendoza.92@gmail.com>', // sender address
+      from: '"CocoMad Bakery" <nmapi2022@gmail.com>', // sender address
       to: buyerEmail, // list of receivers
       subject: `Confirmación de Compra `,
       html: `
