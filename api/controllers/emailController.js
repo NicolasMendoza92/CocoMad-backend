@@ -34,7 +34,7 @@ exports.createEmail = async (req, res) => {
     const transporter = nodemailer.createTransport({
       host: process.env.PASS_HOST,
       port: process.env.PASS_PORT,
-      secure: true, // true for 465, false for other ports
+      secure: true, 
       auth: {
         user: process.env.PASS_USER, // generated gmail user
         pass:  process.env.PASS_GMAIL, // generated gmail password (auth 2 pasos)
