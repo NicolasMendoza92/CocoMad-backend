@@ -55,10 +55,10 @@ exports.createEmail = async (req, res) => {
          <li> Dia de Retiro/Envio : ${deliveryDate} </li>
          <li> Rango Horario: ${deliveryHour} </li>
          <li> ¿Recoge de Tienda? : ${pickUp} </li>
-         <li> SubTotal : ${subTotal} </li>
+         <li> SubTotal : ${subTotal.toFixed(2)} </li>
          <li> Envio: ${sendPrice} EUR </li>
          <li> Descuento: ${discount} EUR </li>
-         <li> Pagas: ${total} EUR </li>
+         <li> Pagas: ${total.toFixed(2)} EUR </li>
          <li> Metodo de Pago : ${payMethod} </li>
       </ul>
       <hr style="width:30%;text-align:left;margin-left:0" >

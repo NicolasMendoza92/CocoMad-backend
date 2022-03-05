@@ -19,9 +19,7 @@ const emailsRoutes = require('./routes/emailsRoute');
 // crear el servidor
 const app = express();
 // permitir acceso al serividor, para poder usarlo como una API y llamarlo de otra app react mia
-app.use(cors({
-  origin:"https://coco-mad-react.vercel.app/"
-}));
+app.use(cors());
 app.use(morgan('dev'));
 
 // Conectar a mongodb
