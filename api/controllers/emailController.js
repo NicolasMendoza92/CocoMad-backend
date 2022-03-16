@@ -47,10 +47,12 @@ exports.createEmail = async (req, res) => {
     const response = await transporter.sendMail({
       from: '"CocoMad Bakery" <nmapi2022@gmail.com>', // sender address
       to: buyerEmail, // list of receivers
-      subject: `Confirmación de Compra `,
+      subject: `Datos de Pedido `,
       html: `
     <div class="d-flex justify-content-start">
-       <h4> Hola ${buyerName}! Muchas Gracias por tu compra! </h4>
+       <h4> Hola ${buyerName}! Muchas Gracias por tu pedido! </h4>
+       <h4> ¡Ya casi terminamos! </h4>
+       <h5> Recuerda que para finalizar el pedido es necesario coordinar el pago por <a href="https://wa.me/c/34635790277" target="blank"> WhatsApp </a> </h5>
       <ul >
          <li> Dia de Retiro/Envio : ${deliveryDate} </li>
          <li> Rango Horario: ${deliveryHour} </li>
@@ -59,7 +61,6 @@ exports.createEmail = async (req, res) => {
          <li> Envio: ${sendPrice} EUR </li>
          <li> Descuento: ${discount} EUR </li>
          <li> Pagas: ${total.toFixed(2)} EUR </li>
-         <li> Metodo de Pago : ${payMethod} </li>
       </ul>
       <hr style="width:30%;text-align:left;margin-left:0" >
      <b> Detalle del Pedido: </b>
@@ -86,8 +87,8 @@ exports.createEmail = async (req, res) => {
      </tbody>
      </table>
      <hr style="width:30%;text-align:left;margin-left:0" >
-     <p> Gracias por comprar en CocoMad Bakery </p>
-     <p> Puedes presentar este correo como prueba </p>
+     <p> No te quedes sin tus productos CocoMad!</p>
+     <p> Gracias por confiar en CocoMad Bakery </p>
     </div>
     `});
 
