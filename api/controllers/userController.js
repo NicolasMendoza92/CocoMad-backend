@@ -3,6 +3,7 @@ const bcryptjs = require('bcryptjs');
 const User = require("../models/User");
 const { validationResult } = require("express-validator");
 const jwt = require('jsonwebtoken');
+const Product = require('../models/Product');
 
 // funcion para crear usuarios y guardarlos en array 
 exports.createUser = async (req, res) => {
@@ -90,8 +91,24 @@ exports.refreshImage = async (req, res) => {
     return res.status(401).json(' No hay Token, permiso no valido');
   }
   try {
-    const cifrado = jwt.verify(token, process.env.SECRETA);
+    const cifrado = jwt.verify(token, process.env.SECRET);
     const user = await User.findByIdAndUpdate(cifrado.user.id, { image: req.body.image });
+    res.send(user);
+  } catch (error) {
+    res.status(401).json('Token no valido');
+  }
+};
+
+exports.updateFavs = async (req, res) => {
+
+  const token = req.header('x-auth-token');
+  if (!token) {
+    return res.status(401).json(' No hay Token, permiso no valido');
+  }
+
+  try {
+    const cifrado = jwt.verify(token, process.env.SECRET);
+    const user = await User.findByIdAndUpdate(cifrado.user.id, { myfavs });
     res.send(user);
   } catch (error) {
     res.status(401).json('Token no valido');

@@ -24,6 +24,8 @@ router.put(
     userController.refreshImage
 );
 
+router.put('/favorites',userController.updateFavs);
+
 router.get('/', userController.getUsers);
 router.get('/:id', userController.getUser);
 router.put('/:id', userController.modifyUser);

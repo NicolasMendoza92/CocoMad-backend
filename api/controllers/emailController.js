@@ -4,8 +4,7 @@ const Product = require('../models/Product');
 
 exports.createEmail = async (req, res) => {
 
-  const { buyerEmail, buyerName, pickUp, deliveryDate, payMethod, deliveryHour, productsList, sendPrice, discount } = req.body
-
+  const { buyerEmail, buyerName, pickUp, deliveryDate, deliveryHour, productsList, sendPrice, discount } = req.body
 
   //Me trae los datos del producto con el post.
   let sales = [];
@@ -57,7 +56,7 @@ exports.createEmail = async (req, res) => {
          <li> Dia de Retiro/Envio : ${deliveryDate} </li>
          <li> Rango Horario: ${deliveryHour} </li>
          <li> ¿Recoge de Tienda? : ${pickUp} </li>
-         <li> SubTotal : ${subTotal.toFixed(2)} </li>
+         <li> SubTotal : ${subTotal.toFixed(2)} EUR </li>
          <li> Envio: ${sendPrice} EUR </li>
          <li> Descuento: ${discount} EUR </li>
          <li> Pagas: ${total.toFixed(2)} EUR </li>

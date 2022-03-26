@@ -4,6 +4,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors')
 const morgan = require('morgan');
+const bodyParser = require("body-parser");
+
 // importamos las rutas que necesitamos.
 const usersRoute = require('./routes/usersRoute')
 const productsRoutes = require('./routes/productsRoute');
@@ -30,6 +32,10 @@ app.use(express.json({ extended: true }));
 
 // Habilitar urlencoded, para consultas desde postman en este formato
 app.use(express.urlencoded({ extended: true }));
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(express.json());
 
 //importar rutas
 app.use('/api/users', usersRoute)

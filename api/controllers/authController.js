@@ -103,7 +103,7 @@ exports.getUserAuthentic = async (req, res) => {
     try {
         const cifrado = jwt.verify(token, process.env.SECRET);
         // aca hacemos como un cifrado y le indicamos que es lo que queremos que muestre cuando llamo a la response.data de la API.
-        const user = await User.findById(cifrado.user.id).select('name role email');
+        const user = await User.findById(cifrado.user.id).select('name role email myfavs');
         res.send(user);
     } catch (error) {
         res.status(401).json('Token no valido');
