@@ -17,7 +17,7 @@ const deliveriesRoutes = require('./routes/deliveriesRoute');
 const emailsRoutes = require('./routes/emailsRoute');
 
 // Importante el orden de las funciones!!!
-const whiteList = ["http://localhost:4000", "https://coco-mad-react.vercel.app"]
+const whiteList = ["http://localhost:4000", "https://coco-mad-react.vercel.app", "http://localhost:3000"]
 var corsOptions = {origin:whiteList}
 // crear el servidor
 const app = express();
