@@ -17,11 +17,12 @@ const deliveriesRoutes = require('./routes/deliveriesRoute');
 const emailsRoutes = require('./routes/emailsRoute');
 
 // Importante el orden de las funciones!!!
-
+const whiteList = ["http://localhost:4000", "https://coco-mad-react.vercel.app"]
+var corsOptions = {origin:whiteList}
 // crear el servidor
 const app = express();
 // permitir acceso al serividor, para poder usarlo como una API y llamarlo de otra app react mia
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
 
 // Conectar a mongodb
@@ -43,9 +44,10 @@ app.use('/api/products', productsRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/messages', messagesRoutes);
+app.use('/api/emails', emailsRoutes);
 app.use('/api/sales', salesRoutes);
 app.use('/api/deliveries', deliveriesRoutes);
-app.use('/api/emails', emailsRoutes);
+
 
 // puerto y arranque del servidor
 app.listen(process.env.PORT || 4000, () => {
