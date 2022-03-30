@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const Email = require('../models/Email');
 const Product = require('../models/Product');
 
-exports.createEmail = async (req, res) => {
+exports.createEmail = async (req, res, next) => {
 
   const { buyerEmail, buyerName, pickUp, deliveryDate, deliveryHour, productsList, sendPrice, discount } = req.body
 
@@ -38,6 +38,7 @@ exports.createEmail = async (req, res) => {
         user: process.env.PASS_USER, // generated gmail user
         pass:  process.env.PASS_GMAIL, // generated gmail password (auth 2 pasos)
       },
+      proxy: process.env.HTTP_PROXY,  
     });
     transporter.verify().then(() => {
       console.log('listo para enviar')
@@ -92,9 +93,13 @@ exports.createEmail = async (req, res) => {
     `});
 
     console.log(response)
-
+    // next();
     //Email de exito
     res.json({ msg: 'Email enviado  Correctamente' });
+    // res.header('Access-Control-Allow-Origin', "*");
+    // res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');     
+    // res.header('Access-Control-Allow-Headers', 'Content-Type');
+
   }
   catch (error) {
     console.log(error);
