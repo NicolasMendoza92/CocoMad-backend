@@ -105,11 +105,13 @@ exports.updateFavs = async (req, res) => {
   if (!token) {
     return res.status(401).json(' No hay Token, permiso no valido');
   }
-
+  
   try {
     const cifrado = jwt.verify(token, process.env.SECRET);
-    const user = await User.findByIdAndUpdate(cifrado.user.id, { myfavs });
-    res.send(user);
+    const user = await User.findByIdAndUpdate(cifrado.user.id, { myfavs: req.body.myfavs });
+    
+    await user.save();
+    res.send('favoritos agregados');
   } catch (error) {
     res.status(401).json('Token no valido');
   }

@@ -34,8 +34,10 @@ app.use(express.json({ extended: true }));
 // Habilitar urlencoded, para consultas desde postman en este formato
 app.use(express.urlencoded({ extended: true }));
 
+// codigos para la subida de imagen
 app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit:50000}));
+app.use(bodyParser.text({ limit: '200mb' }));
 app.use(express.json());
 
 //importar rutas
