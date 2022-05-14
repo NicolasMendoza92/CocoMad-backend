@@ -4,9 +4,13 @@ const { validationResult } = require('express-validator');
 exports.createMessage = async (req, res) => {
     // revisamos los errores
     //middleware
-    const errores = validationResult(req);
-    if (!errores.isEmpty()) {
-        return res.status(400).json({ msg: errores.array() });
+    const errorFormatter = ({ msg }) => {
+        // es para darle el formato al JSON del error 
+        return `${msg}`;
+      };
+    const errors = validationResult(req).formatWith(errorFormatter);
+    if (!errors.isEmpty()) {
+        return res.status(400).json(errors.array());
     }
 
     try {

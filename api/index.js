@@ -35,8 +35,8 @@ app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
 // codigos para la subida de imagen
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit:50000}));
+app.use(bodyParser.json({limit: '500mb'}));
+app.use(bodyParser.urlencoded({limit: '500mb', extended: true, parameterLimit:50000}));
 app.use(bodyParser.text({ limit: '200mb' }));
 app.use(express.json());
 
