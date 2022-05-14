@@ -1,13 +1,18 @@
 const User = require("../models/User");
 const bcryptjs = require('bcryptjs');
 const { validationResult } = require("express-validator");
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { options } = require("../routes/authRoute");
 
 exports.register = async (req, res) => {
     // revisamos errores 
-    const errors = validationResult(req);
+    const errorFormatter = ({ msg }) => {
+        // es para darle el formato al JSON del error 
+        return `${msg}`;
+      };
+    const errors = validationResult(req).formatWith(errorFormatter);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ msg: errors.array() });
+        return res.status(400).json(errors.array());
     }
     // desectructuracion de prop del objeto
     const { email, password} = req.body;
@@ -44,9 +49,13 @@ exports.register = async (req, res) => {
 // funcion para logearse y validarse 
 exports.login = async (req, res) => {
     try {
-        const errors = validationResult(req);
+        const errorFormatter = ({ msg }) => {
+            // es para darle el formato al JSON del error 
+            return `${msg}`;
+          };
+        const errors = validationResult(req).formatWith(errorFormatter);
         if (!errors.isEmpty()) {
-            return res.status(400).json(errors.array());
+            return res.status(400).json(errors.array())
         }
         // desesctructuramos las prop, esto es lo que se le pedira al usuario cuando se logee 
         const { email, password } = req.body;

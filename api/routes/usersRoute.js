@@ -11,7 +11,7 @@ router.post('/',
     // estas son validaciones que se hacen antes de llamar al la funcion "createUser"
     [
         check('name', 'El nombre es obligatorio').not().isEmpty().isLength({ max: 30 }),
-        check('email', 'Agrega un Email Valido').isEmail().isLength({ max: 20 }),
+        check('email', 'Agrega un Email Valido').isEmail().isLength({ max: 30 }),
         check('password', 'El password debe tener mínimo de 6 caracteres').isLength({ min: 6 }),
     ],
     userController.createUser);
