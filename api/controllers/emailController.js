@@ -33,12 +33,12 @@ exports.createEmail = async (req, res, next) => {
     const transporter = nodemailer.createTransport({
       host: process.env.PASS_HOST,
       port: process.env.PASS_PORT,
-      secure: true, 
+      secure: true,
       auth: {
         user: process.env.PASS_USER, // generated gmail user
-        pass:  process.env.PASS_GMAIL, // generated gmail password (auth 2 pasos)
+        pass: process.env.PASS_GMAIL, // generated gmail password (auth 2 pasos)
       },
-      proxy: process.env.HTTP_PROXY,  
+      proxy: process.env.HTTP_PROXY,
     });
     transporter.verify().then(() => {
       console.log('listo para enviar')
