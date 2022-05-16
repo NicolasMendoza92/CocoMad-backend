@@ -38,7 +38,6 @@ exports.createEmail = async (req, res, next) => {
         user: process.env.PASS_USER, // generated gmail user
         pass: process.env.PASS_GMAIL, // generated gmail password (auth 2 pasos)
       },
-      proxy: process.env.HTTP_PROXY,
     });
     transporter.verify().then(() => {
       console.log('listo para enviar')
@@ -96,9 +95,6 @@ exports.createEmail = async (req, res, next) => {
     // next();
     //Email de exito
     res.json({ msg: 'Email enviado  Correctamente' });
-    // res.header('Access-Control-Allow-Origin', "*");
-    // res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');     
-    // res.header('Access-Control-Allow-Headers', 'Content-Type');
 
   }
   catch (error) {
